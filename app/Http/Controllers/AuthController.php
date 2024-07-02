@@ -22,7 +22,7 @@ class AuthController extends Controller
         $credentials = $request->only('email', 'password');
 
         if (Auth::attempt($credentials)) {
-            return redirect('/');
+            return redirect('/')->with('success', 'Login successful!');
         }
 
         return redirect('login')->with('error', 'Invalid email or password');
@@ -31,6 +31,6 @@ class AuthController extends Controller
     public function logout()
     {
         Auth::logout();
-        return redirect('login')->with('success', 'Logout successful!');
+        return redirect('login')->with('logout-success', 'Logout successful!');
     }
 }

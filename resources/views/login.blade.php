@@ -8,9 +8,9 @@
             <div class="row justify-content-center">
                 <div class="col-md-4">
                     <div class="card border-0 shadow-sm py-3 px-4">
-                        @if (Session::has('success'))
+                        @if (Session::has('logout-success'))
                         <div class="alert alert-success text-center text-white bg-green-800 min-w-[100%] mb-3 p-3 rounded">
-                            <h3>{{ Session::get('success') }}</h3>
+                            <h3>{{ Session::get('logout-success') }}</h3>
                         </div>
                         @endif
                         @if (Session::has('error'))
@@ -23,7 +23,7 @@
                                 Welcome Back
                             </p>
                         </div>
-                        <form class="row gy-3" action="{{url('login')}}" method="post" hx-redirect="this" hx-swap="outerHTML">
+                        <form class="row gy-3" hx-post="/login" method="post" hx-target="this" hx-swap="outerHTML">
                             @csrf
                             <div class="col-12">
                                 <label for="emailInp" class="form-label">Email Address</label>

@@ -9,6 +9,6 @@ class UserController extends Controller
     public function index() {
         $user = User::all();
 
-        return view('welcome')->with('login-success', 'Login successful!');
+        return view('welcome');
     }
 }
