@@ -18,10 +18,22 @@ class DatabaseSeeder extends Seeder
     {
         // \App\Models\User::factory(10)->create();
 
-        User::factory()->create([
-            'name'     => 'Test User',
-            'email'    => 'test@example.com',
-            'password' => Hash::make('12345678')
-        ]);
+        $users = [
+            [
+                'name'     => 'Test User',
+                'email'    => 'test@example.com',
+                'password' => Hash::make('12345678')
+            ],
+            [
+                'name'     => 'Test Admin',
+                'email'    => 'admin@example.com',
+                'password' => Hash::make('12345678')
+            ],
+        ];
+
+        // Loop through each user and create them
+        foreach ($users as $user) {
+            User::factory()->create($user);
+        }
     }
 }

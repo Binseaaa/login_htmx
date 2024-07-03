@@ -16,11 +16,13 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::middleware('guest')->group(function () {
-    Route::get('login', [AuthController::class, 'loginIndex']);
+    Route::get('login', [AuthController::class, 'loginIndex'])->name('login');
     Route::post('login', [AuthController::class, 'login']);
 });
 
 Route::middleware('auth')->group(function () {
-    Route::get('/', [UserController::class, 'index']);
+    Route::get('/admin', [UserController::class, 'index'])->name('admin')->middleware('isAdmin');
+    Route::get('/user', [UserController::class, 'index'])->name('user');
+
     Route::post('logout', [AuthController::class, 'logout'])->name('logout');
 });
